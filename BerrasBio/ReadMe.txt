@@ -6,3 +6,4 @@
 
 
 ** Nothing is tested from the SQL Part
+* SQL is cleansed but not tested
