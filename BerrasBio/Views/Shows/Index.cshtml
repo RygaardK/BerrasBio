@@ -1,0 +1,120 @@
+﻿@model IEnumerable<BerrasBio.Models.Show>
+
+@{
+    ViewData["Title"] = "Shows";
+    int SpareBookings = 0;
+    int FromHours = 20;
+    int ToHours = 07;
+}
+@{
+    bool ExpensiveTime()
+    {
+        if (DateTime.Now.Hour >= FromHours && DateTime.Now.Hour <= ToHours) { return true; }
+        else { return false; }
+    }
+    decimal ChangePrice(decimal price)
+    {
+        decimal newPrice = price * 2;
+        return newPrice;
+    }
+    string PrintPrice(decimal price)
+    {
+        string stringy = price.ToString();
+        var print = stringy.Split(",");
+        return print[0];
+    }
+}
+
+<h1>Shows</h1>
+
+
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ShowTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bookings)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie.Price)
+            </th>
+            <th>
+                Go Now
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShowTime)
+                </td>
+                <td>
+                    <img src="@item.Movie.CoverUrl">
+                    <h2>@Html.DisplayFor(modelItem => item.Movie.Name)</h2>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salon.Name)
+                </td>
+                <td>
+                    @{
+                        int countBookings = (int)item.Salon.MaxVisitors;
+                        foreach (Booking b in item.Bookings)
+                        {
+                            countBookings = countBookings - b.NumberOfSeats;
+                        }
+                        @countBookings
+                        ;
+                    }
+                    /
+                    @Html.DisplayFor(modelItem => item.Salon.MaxVisitors)
+                </td>
+                <td>
+                    @{
+
+                        if (ExpensiveTime())
+                        {
+                            var newPrice = PrintPrice(ChangePrice(item.Movie.Price));
+                            @newPrice
+                        }
+                        else
+                        {
+                            var newPrice = PrintPrice(item.Movie.Price);
+                            @newPrice
+                        }
+                    } KR
+                </td>
+                <td>
+                    @{
+                        if (@countBookings <= @SpareBookings)
+                        {
+                            <a asp-area="" asp-controller="Bookings" asp-action="" class="btn btn-outline-dark disabled" role="button" aria-disabled="true">FULL</a>
+                            //<button type="button" class="btn btn-outline-dark" disabled>Full</button>
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Book Now",
+                                              "Create", "Bookings",
+                                              new { id = @item.Id },
+                                              new { @class="btn btn-outline-primary"})
+                            //<a asp-area="" asp-controller="Bookings" asp-action="Create" class="btn btn-outline-primary" role="button">Book Now</a>
+                            //<a asp-area="" asp-controller="Bookings" asp-action=""><button type="button" class="btn btn-outline-primary">Book Now</button></a>
+                        }
+                    }
+                    @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

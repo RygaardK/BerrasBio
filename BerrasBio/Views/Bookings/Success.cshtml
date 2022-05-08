@@ -1,0 +1,14 @@
+﻿@model BerrasBio.Models.Booking
+
+<h1>BOOKING CONFORMATION</h1>
+<p><strong>Booking ID:</strong> @Model.Id</p>
+<p><strong>Show ID:</strong> @Model.ShowId</p>
+<p><strong>Movie Name:</strong> @Model.Show.Movie</p>
+<p><strong>Seats reserveration:</strong> @Model.NumberOfSeats Seats</p>
+<p><strong>Total Price:</strong> @Model.Show.Movie.Price</p>
+@*<p><strong>Show Name:</strong> </p>
+<p><strong>Total Price:</strong> </p>*@
+Krashar när man skapar, Skall vi göra klart detta kanske?
+
+
+ <a  asp-route-id="" asp-controller="Shows" asp-action="Index" class="btn btn-outline-primary" role="button">Back</a>
