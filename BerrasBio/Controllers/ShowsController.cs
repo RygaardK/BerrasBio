@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using BerrasTempo.Models;
+using BerrasBio.Models;
 
 namespace BerrasBio.Controllers
 {
     public class ShowsController : Controller
     {
-        private readonly BerrasTempoContext _context;
+        private readonly BerrasBioContext _context;
 
-        public ShowsController(BerrasTempoContext context)
+        public ShowsController(BerrasBioContext context)
         {
             _context = context;
         }
@@ -24,8 +24,8 @@ namespace BerrasBio.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var berrasTempoContext = _context.Shows.Include(s => s.Movie).Include(s => s.Salon).Include(s => s.Bookings);
-            return View(await berrasTempoContext.ToListAsync());
+            var berrasBioContext = _context.Shows.Include(s => s.Movie).Include(s => s.Salon).Include(s => s.Bookings);
+            return View(await berrasBioContext.ToListAsync());
         }
 
         // GET: Shows/Details/5

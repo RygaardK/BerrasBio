@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace BerrasBio.Models
 {
-    public partial class BerrasTempoContext : DbContext
+    public partial class BerrasBioContext : DbContext
     {
-        public BerrasTempoContext()
+        public BerrasBioContext()
         {
         }
 
-        public BerrasTempoContext(DbContextOptions<BerrasTempoContext> options)
+        public BerrasBioContext(DbContextOptions<BerrasBioContext> options)
             : base(options)
         {
         }
@@ -26,7 +26,7 @@ namespace BerrasBio.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=BerrasTempo;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=BerrasBio;Trusted_Connection=True;");
             }
         }
 

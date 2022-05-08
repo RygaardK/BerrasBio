@@ -12,9 +12,9 @@ namespace BerrasBio.Controllers
 {
     public class BookingsController : Controller
     {
-        private readonly BerrasTempoContext _context;
+        private readonly BerrasBioContext _context;
 
-        public BookingsController(BerrasTempoContext context)
+        public BookingsController(BerrasBioContext context)
         {
             _context = context;
         }

@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using BerrasTempo.Models;
+using BerrasBio.Models;
 
 namespace BerrasBio.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly BerrasTempoContext _context;
+        private readonly BerrasBioContext _context;
 
-        public MoviesController(BerrasTempoContext context)
+        public MoviesController(BerrasBioContext context)
         {
             _context = context;
         }

@@ -1,11 +1,11 @@
-using BerrasTempo.Models;
+using BerrasBio.Models;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<BerrasTempoContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("BerrasTempo")));
+builder.Services.AddDbContext<BerrasBioContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BerrasBio")));
 
 var app = builder.Build();
 
